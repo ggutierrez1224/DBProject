@@ -26,7 +26,7 @@
   List States: <select name="type" size=1>
 			<option value="Open Carry">Open Carry</option>
 			<option value="Not Open Carry">Not Open Carry</option>
-		</select>&nbsp;<br> <input type="submit" value="submit">
+		</select>&nbsp;<br> <input type="submit" value="Submit">
 </form>
 <br>
 
@@ -35,25 +35,35 @@ Compare crime rates based on State. (Per 100k Population)
 	<form method="post" action="cmpRate.jsp">
 	<table>
 	<tr>    
-	<td><input type="text" name="state1"></td>
-	</tr>
-	<tr>
-	<td><input type="text" name="state2"></td>
+	<td><input type="text" name="state1" placeholder="First State"></td>
+	<td><input type="text" name="state2" placeholder="Second State"></td>
 	</tr>
 	</table>
-	<br>
-	<input type="submit" value="submit">
+	<input type="submit" value="Get Rates">
 	</form>
 <br>
 
-Sort By:
-<br id="thrid">
-	<form method="query" action="query.jsp">
-		<select name="price" size=1>
-			<option value="Open Carry">Open Carry</option>
-			<option value="Not Open Carry">Not Open Carry</option>
-			<option value="8.0">Most Recent</option>
-		</select>&nbsp;<br> <input type="submit" value="submit">
+Get a statistic of a specific crime in a State:
+<br>
+	<form method="query" action="stats.jsp">
+	<table>
+	<tr>
+	<td><select name="crimeType" size=1>
+			<option value="Violent">Violent</option>
+			<option value="Property">Property</option>
+			<option value="Murder">Murder</option>
+			<option value="Rape">Rape</option>
+			<option value="Robbery">Robbery</option>
+			<option value="AggravatedAssault">Aggravated Assault</option>
+			<option value="Burglary">Burglary</option>
+			<option value="LarcenyThefy">Larceny Theft</option>
+			<option value="VehicleTheft">Vehicle Theft</option>
+			<option value="All">All Crime</option>
+			</select>&nbsp;</td>
+	<td><input type="text" name = "state" placeholder="State Name"></td>
+	</tr>
+	</table>
+	<input type="submit" value="Get Rate">
 	</form>
 <br>
 
