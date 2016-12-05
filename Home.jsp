@@ -43,12 +43,13 @@ Compare crime rates based on State. (Per 100k Population)
 	</form>
 <br>
 
-Get a statistic of a specific crime in a State:
+Get a percentage of a specific crime in a State:
 <br>
 	<form method="query" action="stats.jsp">
 	<table>
 	<tr>
 	<td><select name="crimeType" size=1>
+			<option value="">Pick a Crime</option>
 			<option value="Violent">Violent</option>
 			<option value="Property">Property</option>
 			<option value="Murder">Murder</option>
@@ -60,12 +61,49 @@ Get a statistic of a specific crime in a State:
 			<option value="VehicleTheft">Vehicle Theft</option>
 			<option value="All">All Crime</option>
 			</select>&nbsp;</td>
+	<td><select name="Year" size=1>
+		<option value="">Choose Year</option>
+		<option value="2011">2011</option>
+		<option value="2012">2012</option>
+		<option value="2013">2013</option>
+		<option value="2014">2014</option>
+		<option value="2015">2015</option>
+		<option value="2016">2016</option>
+		</select>&nbsp;</td>
 	<td><input type="text" name = "state" placeholder="State Name"></td>
 	</tr>
 	</table>
 	<input type="submit" value="Get Rate">
 	</form>
 <br>
+
+&nbsp;Find something with this
+<br>
+	<form method="find" action="find.jsp">
+	<table>
+	<tr>
+	<td><input type="text" name="state" placeholder="State"></td>
+	<td><select name="crime" size=1>
+			<option value="">Pick a Crime</option>
+			<option value="Violent">Violent</option>
+			<option value="Property">Property</option>
+			<option value="Murder">Murder</option>
+			<option value="Rape">Rape</option>
+			<option value="Robbery">Robbery</option>
+			<option value="AggravatedAssault">Aggravated Assault</option>
+			<option value="Burglary">Burglary</option>
+			<option value="LarcenyThefy">Larceny Theft</option>
+			<option value="VehicleTheft">Vehicle Theft</option>
+			</select>&nbsp;</td>
+	<td><select name="option" size=1>
+		<option value=""> Pick Option</option>
+		<option value="MAX">Highest</option>
+		<option value="MIN">Lowest</option>
+		<option value="AVG">Average</option>
+	</select> &nbsp;</td>
+	</table>
+	&nbsp;<input type="submit" value="Submit">
+	</form>
 
 </body>
 </html>
