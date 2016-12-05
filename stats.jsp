@@ -20,8 +20,8 @@
 		crimeList.add("Robbery");
 		crimeList.add("AggravatedAssault");
 		crimeList.add("Burglary");
-		crimeList.add("Larceny Theft");
-		crimeList.add("Vehicle Theft");
+		crimeList.add("LarcenyTheft");
+		crimeList.add("VehicleTheft");
 
 		try {
 
@@ -38,52 +38,33 @@
 			//Get the selection from Home.jsp
 			String entityCrime = request.getParameter("crimeType");
 			String entityState = request.getParameter("state");
+			String entityYear = request.getParameter("Year");
 			//check if user selected all crimes and make statement
 			String str;
 			if(entityCrime.equals("All"))
 			{
-				str = "SELECT * FROM StateCrime WHERE State = '" + entityState + "'";
+				str = "SELECT * FROM StateCrime WHERE State = '" + entityState + "'" + "AND Year = " + entityYear;
 			}
 			else
 			{
-				str = "SELECT State, " + entityCrime +" FROM StateCrime WHERE State = '" + entityState + "'";
+				str = "SELECT State, TRUNCATE((" + entityCrime +"/CrimeTotal)*100,2) as Stat FROM StateCrime WHERE State = '" + entityState + "'" + "AND Year = " + entityYear;
 			}
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
-
+			
 			out.print("State: " + entityState);
+			out.print("<br>");
+			out.print("Year: " + entityYear);
 			
 			//Make an HTML table to show the results in:
 			out.print("<table>");
 
 			if(!entityCrime.equals("All"))
 			{
-				
-				//make a column for crime 
-				out.print("<td>");
-				//print out column header
-				out.print("Crime");
-				out.print("</td>");
-				//make a column for statistic
-				out.print("<td>");
-				//print out column header
-				out.print("Statistic");
-				out.print("</td>");			
-	
-				//parse out the results
-				while (result.next()) 
-				{
-					out.print("<tr>");
-					//make column and print crime type
-					out.print("<td>");
-					out.print(entityCrime);
-					out.print("</td>");
-					//make column and print statistic
-					out.print("<td>");
-					out.print(result.getString(entityCrime));
-					out.print("</td>");
-					//out.print("</tr>");
-				}
+				result.next();
+				out.print("Crime: " + entityCrime);
+				out.print("<br>");
+				out.print("Statistic: " + result.getString("Stat") + "");
 			}
 			else
 			{
@@ -115,7 +96,6 @@
 					out.print("<td>");
 					out.print(result.getString(crimeList.get(i)));
 					out.print("</td>");
-					//out.print("</tr>");
 					}
 				}
 			}
