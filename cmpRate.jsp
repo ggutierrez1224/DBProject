@@ -28,8 +28,9 @@
 			//Get intput from home.jsp
 			String entity1 = request.getParameter("state1");
 			String entity2 = request.getParameter("state2");
+			String entityYear = request.getParameter("year");
 			//Make query
-			String str = "SELECT DISTINCT TRUNCATE((c.CrimeTotal/s.Population)*100000,2) as Rate, s.State FROM StateCrime c, States s WHERE (c.State = '" + entity1 + "' AND s.State = '" + entity1 + "') OR (c.State = '" + entity2 + "' AND s.State = '" + entity2 + "')";
+			String str = "SELECT DISTINCT TRUNCATE((c.CrimeTotal/s.Population)*100000,2) as Rate, s.State FROM StateCrime c, States s WHERE (c.State = '" + entity1 + "' AND s.State = '" + entity1 + "' AND c.Year = " + entityYear + ") OR (c.State = '" + entity2 + "' AND s.State = '" + entity2 + "' AND c.Year = " + entityYear + ")";
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 			
