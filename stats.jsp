@@ -62,9 +62,10 @@
 			if(!entityCrime.equals("All"))
 			{
 				result.next();
+				out.print("<br>");
 				out.print("Crime: " + entityCrime);
 				out.print("<br>");
-				out.print("Statistic: " + result.getString("Stat") + "");
+				out.print("Percentage of Total Crime: " + result.getString("Stat") + "%");
 			}
 			else
 			{
@@ -78,7 +79,7 @@
 				//make a column for Population 
 				out.print("<td>");
 				//print out column header
-				out.print("Statistic");
+				out.print("% of Total Crime");
 				out.print("</td>");
 				
 				//parse out the results
@@ -90,11 +91,15 @@
 					out.print("<tr>");
 					//make a column and print state name
 					out.print("<td>");
+					int crimeTotal = Integer.parseInt(result.getString("CrimeTotal"));
+					int crime = Integer.parseInt(result.getString(crimeList.get(i)));
+					double p = ((double)crime/(double)crimeTotal)*100;
+					String percent = String.format("%2.02f", p) + "%";
 					out.print(crimeList.get(i));
 					out.print("</td>");
 					//make column and print statistic
 					out.print("<td>");
-					out.print(result.getString(crimeList.get(i)));
+					out.print(percent);
 					out.print("</td>");
 					}
 				}
